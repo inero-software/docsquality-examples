@@ -1,0 +1,15 @@
+<div *ngIf="!displayLink" class="form-group file-input-wrapper">
+  <div *transloco="let t">
+    <ngx-file-drop dropZoneClassName="file-drop" (onFileDrop)="handleFileDrop($event)"
+                   [directory]="false" [accept]="accept" [disabled]="disabled" [multiple]="true">
+      <ng-template ngx-file-drop-content-tmp let-openFileSelector="openFileSelector">
+        <div class="note" *ngIf="!file">{{t('product.drag_text')}}</div>
+        <p-button id="button"
+                  icon="{{!(file && !!file.name) ? 'fas fa-plus' : 'fas fa-minus'}}"
+                  label="{{(file && !!file.name) ? t('product.delete_button') : t('product.choose_button')}}"
+                  (click)="(file && !!file.name) ? deleteFile() : openFileSelector()" [disabled]="disabled"></p-button>
+      </ng-template>
+    </ngx-file-drop>
+    <span *ngIf="displayError">{{t('file_not_picked')}}</span>
+  </div>
+</div>

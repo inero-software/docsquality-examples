@@ -1,0 +1,9 @@
+<p-dialog [header]="title" [(visible)]="visible" [modal]="true" [baseZIndex]="10000"
+          [draggable]="false" [resizable]="false" [closable]="true">
+  <pre #jsonContainer class=json-container></pre>
+  <ng-template pTemplate="footer">
+    <p-button *ngIf="buttonLabel" (click)="buttonCallback.emit()" [label]="buttonLabel">
+    </p-button>
+  </ng-template>
+</p-dialog>
+

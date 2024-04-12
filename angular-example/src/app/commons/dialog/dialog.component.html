@@ -1,0 +1,24 @@
+<p-dialog [header]="title" [(visible)]="_visible" [modal]="true" [baseZIndex]="10000"
+          [draggable]="false" [resizable]="false" [closable]="closeable"
+          [style]="{width: width, height: height}">
+
+  <ng-template pTemplate="body">
+    <ng-content></ng-content>
+  </ng-template>
+
+  <ng-template pTemplate="footer">
+    <p-button *ngIf="button1Label"
+              [outlined]="true"
+              [class]="button1Class"
+              [loading]="button1Loading"
+              [disabled]="disableButton1" label="{{button1Label}}"
+              (click)="button1Click()">
+    </p-button>
+    <p-button *ngIf="button2Label" class="ml-2"
+              [class]="button2Class"
+              [loading]="button2Loading"
+              [disabled]="disableButton2" label="{{button2Label}}"
+              (click)="button2Click()">
+    </p-button>
+  </ng-template>
+</p-dialog>

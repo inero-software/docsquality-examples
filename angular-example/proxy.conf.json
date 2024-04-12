@@ -1,0 +1,20 @@
+{
+  "/api": {
+    "target": "https://app.docsquality.com/api/",
+    "secure": false,
+    "ws": true,
+    "changeOrigin": true,
+    "pathRewrite": {
+      "^/api": ""
+    }
+  },
+  "/keycloak": {
+    "target": "https://auth.app.docsquality.com/",
+    "secure": false,
+    "ws": true,
+    "changeOrigin": true,
+    "pathRewrite": {
+      "^/keycloak": ""
+    }
+  }
+}

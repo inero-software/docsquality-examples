@@ -1,0 +1,104 @@
+{
+  "nav": {
+    "title": "DOCUMENT QUALITY CONTROL"
+  },
+  "product": {
+    "upload": "Upload your document:",
+    "ocr_index": "OCR index",
+    "ocr_index_tooltip": "This indicator allows you to assess whether the OCR program will correctly read the file.",
+    "doc_category": "Document category",
+    "doc_category_tooltip": "This indicator allows you to categorize the document.",
+    "file_not_picked": "File doesn't picked yet",
+    "predict_quality": "PREDICT QUALITY",
+    "choose_button": "CHOOSE A FILE",
+    "delete_button": "DELETE FILE",
+    "drag_text": "OR DRAG IT HERE",
+    "note": "Note: do not upload confidential documents",
+    "choose_document": "Choose a document from our database",
+    "processing": "Processing document...",
+    "long_processing": "Please be patient, the document is being processed...",
+    "password": "Provided document seems to be password protected.",
+    "provide_password": "Please provide a password below.",
+    "many_pages": "The document file contains ",
+    "many_pages_break": "pages and may take up to 180 seconds to process.\n    Are you sure you want to continue?",
+    "more_than_five": "more than 5",
+    "password_dialog_title": "Enter a password",
+    "document_information": "Document quality prediction information",
+    "ocr": {
+      "hardly_legible": "The document is hardly legible. The OCR results will be highly inaccurate.",
+      "defects": "The document is readable, but it contains defects. The OCR system may have problems reading some parts of its content.",
+      "legible": "The document is legible. The OCR system should effectively read the text.",
+      "unknown": "Uknown OCR Index."
+    },
+    "errors": {
+      "incorrect_password": "Provided password is incorrect",
+      "no_password": "No password given",
+      "unpack": "It is necessary to unpack the file",
+      "tiff": "Invalid TIFF file format detected",
+      "limit": "In order to change the limit, please contact support@docsquality.com",
+      "predict": "An error occurred while trying to predict document quality",
+      "auth": "Token is invalid or expired, please check your credentials",
+      "exceed_limit": "The data value transmitted exceeds the capacity limit. In order to change the limit, please contact support@docsquality.com",
+      "preview": "Failed to open file preview",
+      "compression_error": "File compression error"
+    },
+    "quality_types": {
+      "all": "All",
+      "good_quality": "Good quality",
+      "sharpness": "Sharpness",
+      "general_sharpness": "General sharpness",
+      "shape": "Shape",
+      "perspective": "Perspective",
+      "contours": "Contours",
+      "exposure": "Exposure",
+      "overexposed": "Overexposed",
+      "low_brightness": "Low brightness",
+      "overexposure": "Overexposure",
+      "readability": "Readability",
+      "unreadable_handwriting": "Unreadable handwriting",
+      "unreadable_printed_text": "Unreadable printed text",
+      "tooltips": {
+        "all": "This attribute tells about all documents",
+        "good_quality": "This attribute indicates if the quality of the whole document (all pages of the document) is correct.",
+        "sharpness": "This attribute describes the degree of blurring of the document. The more blurred the document, the lower the value of this parameter.",
+        "shape": "SHAPE is a set of attributes that pertain to the quality of documents when their frame does not completely overlap with their content in the analyzed file. This can happen when a document is photographed in a way that it is not fully visible or when the photo includes other objects besides the document. The reasons for this can vary, such as incorrect camera angle, the document being too large for the cameras field of view, or the photographer not being familiar with the appropriate document capture techniques.",
+        "exposure": "This group of attributes defines if the document content is readable due to light conditions. Exposure consists of two types of document defects: OVEREXPOSED and LOW BRIGHTNESS. Note that both of these defects can theoretically occur within one page of the document.",
+        "readability": "This attribute indicates the quality of a text detected in the document, for example, if the text is poorly recognized or was poorly written due to ink problems."
+      },
+      "messages": {
+        "good_quality": "Document is of good quality.",
+        "sharpness": "The document file is of poor quality due to low sharpness.",
+        "shape": "The document file is of poor quality due to poor exposure.",
+        "exposure": "The document file is of poor quality due to low readability.",
+        "readability": "The document file is of poor quality due to its incorrect image shape formatting."
+      }
+    },
+    "document_category": {
+      "cmr": "CMR consignment note",
+      "invoice": "Invoice",
+      "delivery_note": "Delivery note",
+      "ocp_ocs": "Insurance policy",
+      "payment_confirmation": "Confirmation of payment",
+      "agreement": "Agreement",
+      "unknown": "Unknown",
+      "unable_to_classify": "Unable to classify - no text detected"
+    },
+    "results": {
+      "result_header": "Result for file:",
+      "details_header": "Details",
+      "show_response": "Show API response",
+      "attribute": "Attribute",
+      "message": "Message",
+      "doc_category": "Document category",
+      "page": "Page",
+      "page_category": "Document page category",
+      "additional_remarks": "Additional remarks",
+      "detailed_attributes": "Detailed attributes",
+      "preview": "PREVIEW"
+    }
+  },
+  "yes": "Yes",
+  "no": "No",
+  "cancel": "Cancel",
+  "close": "Close"
+}

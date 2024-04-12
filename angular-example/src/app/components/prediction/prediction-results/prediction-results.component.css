@@ -1,0 +1,158 @@
+:host {
+  & h5 {
+    color: #511C74;
+  }
+
+  & span {
+    font-family: Montserrat, sans-serif;
+    font-size: 13px;
+  }
+}
+
+:host ::ng-deep .p-button-outlined {
+  border-radius: 6px;
+  background: white;
+  color: #511C74;
+}
+
+:host ::ng-deep .p-button-label {
+  font-size: small;
+  font-weight: 450;
+}
+
+:host ::ng-deep .padding-btn .p-button {
+  padding: 0.5rem;
+  color: #511C74;
+}
+
+.results-container {
+  display: flex;
+}
+
+.no-padding {
+  padding: unset;
+}
+
+.file-type {
+  text-align: center;
+  color: #ffffff;
+  padding-right: 5px;
+  font-weight: bold;
+  border-radius: 0.3rem;
+  font-size: 16px;
+}
+
+.overall-knob {
+  margin-bottom: 10rem;
+}
+
+.ocr-knob {
+  margin-left: 0.5rem;
+}
+
+:host ::ng-deep .p-accordion {
+  .p-accordion-header a {
+    background-color: #ECF2FF !important;
+    border: 1px solid #511C74 !important;
+    font-size: smaller !important;
+    color: #000000 !important;
+  }
+
+  .p-accordion-content {
+    font-size: smaller !important;
+  }
+}
+
+::ng-deep .p-knob-text {
+  font-size: 1.3rem !important;
+}
+
+.red {
+  ::ng-deep .p-knob-value {
+    stroke: #ff3131;
+  }
+}
+
+.orange {
+  ::ng-deep .p-knob-value {
+    stroke: #ff914c;
+  }
+}
+
+.blue {
+  ::ng-deep .p-knob-value {
+    stroke: #0b94e2;
+  }
+}
+
+.green {
+  ::ng-deep .p-knob-value {
+    stroke: #00d602;
+  }
+}
+
+.description {
+  color: #6D6D6D;
+  font-size: 13px;
+  font-weight: bold;
+}
+
+.p-2 {
+  display: flex;
+  align-items: center;
+}
+
+.description-value {
+  font-size: 13px;
+  font-family: Montserrat, sans-serif;
+}
+
+.header {
+  height: 1.8rem;
+}
+
+
+::ng-deep .p-accordion-header-text {
+  line-height: 1;
+
+  .description-value
+;
+}
+
+
+::ng-deep .p-accordion .p-accordion-header:not(.p-disabled).p-highlight .p-accordion-header-link {
+  background: #511C74 !important;
+  color: #FFFFFF !important;
+}
+
+::ng-deep .p-accordion .p-accordion-header .p-accordion-header-link {
+  color: #511C74;
+}
+
+.text-overflow {
+  text-overflow: ellipsis;
+  overflow: hidden;
+}
+
+.with-padding {
+  padding-top: 0.25rem;
+}
+
+::ng-deep .p-dialog-header {
+  font-family: Montserrat, sans-serif !important;
+}
+
+::ng-deep .p-dialog .p-dialog-header .p-dialog-title {
+  color: #511C74;
+}
+
+::ng-deep .p-dialog .p-dialog-header .p-dialog-header-icon {
+  color: #511C74 !important;
+}
+
+
+@media (max-width: 768px) {
+  .details {
+    flex-wrap: wrap;
+  }
+}

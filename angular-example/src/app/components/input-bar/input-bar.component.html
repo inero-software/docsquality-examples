@@ -1,0 +1,27 @@
+<div *transloco="let t">
+  <div class="buttons-container">
+    <app-upload-form #uploadComponent
+                     (uploadCallback)="uploadCallback.emit(uploadComponent.file)"
+                     (deleteCallback)="deleteCallback.emit()"
+                     (fileCompressionErrorCallback)="onCompressionUnpackError()"
+                     [disabled]="fileDropDisabled"
+                     [accept]="'.jpg,.jpeg,image/tif,image/tiff,image/png,application/pdf'">
+    </app-upload-form>
+    <p-button (click)="predictCallback.emit()"
+              [disabled]="!fileIsChosen || fileIsTooLarge || predictionDisabled"
+              [loading]="predictionDisabled"
+              [rounded]="true"
+              label="{{t('product.predict_quality')}}">
+    </p-button>
+  </div>
+  <div class="features-container">
+    <p-checkbox [(ngModel)]="ocrIndexEnabled" [binary]="true" (onChange)="saveOCRIndexSelectionInStorage($event)"
+                pTooltip="{{t('product.ocr_index_tooltip')}}"
+                label="{{t('product.ocr_index')}}">
+    </p-checkbox>
+    <p-checkbox [(ngModel)]="documentCategoryEnabled" [binary]="true" (onChange)="saveDocTypeSelectionInStorage($event)"
+                pTooltip="{{t('product.doc_category_tooltip')}}"
+                label="{{t('product.doc_category')}}">
+    </p-checkbox>
+  </div>
+</div>

@@ -1,0 +1,34 @@
+.container-fluid {
+  height: 100%;
+}
+
+.navbar {
+  position: sticky;
+  top: 0;
+  height: auto;
+  width: 100%;
+  justify-content: center;
+  align-items: center;
+  padding: 1rem 0 1rem 1rem;
+  background-color: #511C74;
+  color: gainsboro;
+  font-family: Montserrat, sans-serif !important;
+  font-weight: bold;
+  font-size: large;
+  letter-spacing: .2rem;
+}
+
+.logo {
+  filter: brightness(0) invert(1) grayscale(100%) brightness(1.5);
+}
+
+.logo-text {
+  padding-left: 1rem;
+}
+
+
+@media (max-width: 768px) {
+  .logo {
+    width: 50vw;
+  }
+}

@@ -1,0 +1,22 @@
+::ng-deep .modal-content {
+  z-index: -1 !important;
+}
+
+:host ::ng-deep .p-dialog {
+  width: 50vw;
+}
+
+:host ::ng-deep .p-dialog-content {
+  padding: 1rem;
+}
+
+:host ::ng-deep .p-dialog-footer {
+  display: flex;
+  justify-content: center;
+}
+
+:host ::ng-deep .p-button {
+  border-radius: 6px;
+  background: #511C74;
+  border-color: #511C74;
+}

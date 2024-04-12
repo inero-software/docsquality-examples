@@ -1,0 +1,42 @@
+:host {
+  flex-grow: 1;
+  overflow-x: hidden;
+  overflow-y: auto;
+}
+
+.input-container {
+  padding: 2rem;
+}
+
+.attribute-container {
+  align-items: center;
+  justify-content: center;
+  display: flex;
+  padding: 2rem;
+  flex-wrap: wrap;
+
+  & span {
+    cursor: pointer;
+  }
+}
+
+@media (max-width: 768px) {
+  .attribute-container {
+    justify-content: flex-start;
+  }
+}
+
+.spinner-text {
+  z-index: 2000;
+  position: absolute;
+  color: white;
+  left: 0;
+  right: 0;
+  font-size: 1rem;
+  text-align: center;
+  top: calc(50% + 40px);
+}
+
+.doc-icon {
+  padding: 1rem;
+}

@@ -1,0 +1,18 @@
+@import "primeng/resources/primeng.css";
+@import "primeicons/primeicons.css";
+
+.p-tabview .p-tabview-panels {
+  padding: 0;
+}
+
+:root {
+  overflow-x: hidden;
+}
+
+
+html, body {
+  max-width: 100%;
+  overflow-x: hidden;
+}
+
+

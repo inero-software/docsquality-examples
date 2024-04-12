@@ -1,0 +1,4 @@
+<app-file-input [disabledDeleteButton]="fileInput && fileInput.file ? fileInput.file == null : true"
+                [disabled]="disabled"
+                (fileSelectionCallback)="uploadCallback.emit()" (fileDeletionCallback)="deleteCallback.emit()"
+                (fileCompressionErrorCallback)="fileCompressionErrorCallback.emit()" [accept]="accept"></app-file-input>

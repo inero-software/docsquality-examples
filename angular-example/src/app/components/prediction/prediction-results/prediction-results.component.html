@@ -1,0 +1,149 @@
+<div *transloco="let t">
+  <div *ngIf="fileIsUploaded && !!_prediction" class="results-container row">
+    <div class="col-12 col-lg-6">
+      <div *ngIf="fileIsUploaded && !!_prediction">
+        <h5 class="text-overflow with-padding">{{t('product.results.result_header')}} {{file.name}}</h5>
+        <p-divider></p-divider>
+      </div>
+
+      <div *ngIf="fileIsUploaded && !!_prediction">
+        <div class="d-flex justify-content-between p-2">
+          <div class="d-flex flex-column justify-content-between">
+            <div>
+              <div class="description">{{t('product.results.attribute')}}</div>
+              <span
+                class="description-value">{{t('product.quality_types.' + _prediction.attribute.toLowerCase()) | underlineBeautify}}</span>
+              <div class="description pt-2">{{t('product.results.message')}}</div>
+              <span
+                class="description-value">{{t(getOverallMessageByAttrLangMapping(_prediction.attribute))}}</span>
+              <div *ngIf="_prediction.document_category"
+                   class="description pt-2">{{t('product.results.doc_category')}}</div>
+              <span *ngIf="_prediction.document_category"
+                    class="description-value">{{t(getDocumentCategoryLangMapping(_prediction.document_category))}}</span>
+              <div *ngIf="_prediction.ocr_index || _prediction.ocr_index === 0"
+                   class="description pt-2">{{t('product.ocr_index')}}
+                <span><p-knob class="d-inline-block {{getKnobClassNameType(_prediction.ocr_index)}} ocr-knob"
+                              [ngModel]="_prediction.ocr_index | number: '1.0-0'" [size]="45" [step]="1"
+                              valueTemplate="{value}" [readonly]="true"
+                              [textColor]="getBackgroundColorType(_prediction.ocr_index)"></p-knob></span>
+              </div>
+              <span *ngIf="_prediction.ocr_index || _prediction.ocr_index === 0"
+                    class="description-value">{{t(getOCRIndexMessage(_prediction.ocr_index))}} </span>
+
+            </div>
+            <div class="py-4">
+              <p-button label="{{t('product.results.show_response')}}" [outlined]="true"
+                        (click)="jsonDialog.show()">
+              </p-button>
+            </div>
+          </div>
+          <div>
+        <span><p-knob class="d-inline-block {{getKnobClassNameType(_prediction.quality)}} overall-knob"
+                      [ngModel]="_prediction.quality | number: '1.0-0'" [size]="127" [step]="1"
+                      valueTemplate="{value}" [readonly]="true"
+                      [textColor]="getBackgroundColorType(_prediction.quality)"></p-knob></span>
+            <br>
+          </div>
+        </div>
+      </div>
+    </div>
+    <div class="col-12 col-lg-6">
+      <div class="d-flex justify-content-between header">
+        <h5>{{t('product.results.details_header')}}</h5>
+        <p-button class="padding-btn" [text]="true" icon="{{isHidedPages ? 'fas fa-eye-slash': 'fas fa-eye'}}"
+                  (click)="hidePages()"></p-button>
+      </div>
+      <p-divider></p-divider>
+      <p-accordion [multiple]="true">
+        <p-accordionTab *ngFor="let quality of _qualities; let i = index"
+                        [(selected)]="activeState[i]"
+                        [header]="t('product.results.page') + ' ' + quality.page">
+          <div class="d-flex justify-content-between details">
+            <div class="p-2">
+              <span [style]="{'color': getBackgroundColorType(quality.quality)}"
+                    class="file-type">
+              {{t('product.quality_types.' + quality.attribute.toLowerCase()) | underlineBeautify}}
+              </span>
+              <p-knob class="d-inline-block {{getKnobClassNameType(quality.quality)}}"
+                      [ngModel]="quality.quality | number: '1.0-0'" valueTemplate="{value}"
+                      [textColor]="getBackgroundColorType(quality.quality)"
+                      [size]="58" [readonly]="true"></p-knob>
+            </div>
+            <span class="p-2">
+            {{t(getOverallMessageByAttrLangMapping(quality.attribute))}}
+            </span>
+            <div class="p-2">
+              <p-button icon="fas fa-eye" label="{{t('product.results.preview')}}" [outlined]="true"
+                        (click)="assignSelectedPageUrl(quality); showPreview = true">
+              </p-button>
+            </div>
+          </div>
+          <div *ngIf="quality.category" class="d-flex flex-column justify-content-start">
+            <span class="description px-2 pt-2">{{t('product.results.page_category')}}</span>
+            <span class="p-2">{{t(getDocumentCategoryLangMapping(quality.category))}}</span>
+          </div>
+          <div class="d-flex flex-column" *ngIf="quality.ocr_index || quality.ocr_index === 0">
+            <span class="description px-2 pt-2">
+              {{t('product.ocr_index')}}
+              <span>
+                <p-knob
+                  class="d-inline-block {{getKnobClassNameType(quality.ocr_index)}} ocr-knob"
+                  [ngModel]="quality.ocr_index | number: '1.0-0'" [size]="45" [step]="1"
+                  valueTemplate="{value}" [readonly]="true"
+                  [textColor]="getBackgroundColorType(quality.ocr_index)">
+                </p-knob>
+              </span>
+            </span>
+            <span class="p-2">
+              {{t(getOCRIndexMessage(quality.ocr_index))}}
+            </span>
+          </div>
+          <div class="d-flex" *ngFor="let detail of quality.details">
+            <div class="mb-3 px-2 pt-2" *ngIf="detail.additional_remarks.length > 0">
+              <span class="description">
+                {{t('product.results.additional_remarks')}}
+              </span>
+              <div *ngFor="let remark of detail.additional_remarks">
+                <span class="d-flex description-value pt-1">
+                  {{remark[activeLang]}}
+                </span>
+              </div>
+            </div>
+          </div>
+          <div *ngIf="worstDetails.length > 0 && worstDetails[i]">
+            <span class="description px-2">
+              {{t('product.results.detailed_attributes')}}
+            </span>
+            <div class="d-flex p-2">
+              <div *ngFor="let detail of worstDetails[i].detailed_attributes">
+                <div *ngIf="detail.quality < 75">
+                  <span [style]="{'color': getBackgroundColorType(detail.quality)}"
+                        class="file-type mr-2">{{t('product.quality_types.' + detail.attribute.toLowerCase())}}
+                  </span>
+                  <p-knob class="d-inline-block mr-4 {{getKnobClassNameType(detail.quality)}}"
+                          [ngModel]="detail.quality | number: '1.0-0'" valueTemplate="{value}"
+                          [textColor]="getBackgroundColorType(detail.quality)"
+                          [size]="45" [readonly]="true"></p-knob>
+                </div>
+              </div>
+            </div>
+          </div>
+        </p-accordionTab>
+      </p-accordion>
+    </div>
+  </div>
+</div>
+
+<app-json-dialog #jsonDialog
+                 title="POST /engine/quality"
+                 [object]="_response"
+                 buttonLabel="Close" (buttonCallback)="jsonDialog.hide()">
+</app-json-dialog>
+
+<app-doc-preview *ngIf="showPreview && !!src"
+                 [src]="src" [fullSize]="true"
+                 [isPdf]="fileType === DocumentFileType.PDF"
+                 [password]="password"
+                 (onCloseClick)="showPreview = false"
+                 [page]="selectedPageNo">
+</app-doc-preview>

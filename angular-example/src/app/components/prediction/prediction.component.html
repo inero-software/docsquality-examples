@@ -1,0 +1,96 @@
+<div *transloco="let t">
+  <div class="input-container">
+    <app-input-bar #inputBarComponent
+                   [file]="file"
+                   [fileIsChosen]="fileState == fileStates.chosen || fileState == fileStates.uploaded || fileState == fileStates.predicted"
+                   [fileIsTooLarge]="fileIsTooLarge"
+                   [fileDropDisabled]="spinner"
+                   [predictionDisabled]="spinner"
+                   (uploadCallback)="chooseFile($event)"
+                   (deleteCallback)="deleteFile();"
+                   (predictCallback)="checkDocumentPassword(file)"
+                   (selectAttributeCallback)="handleSelectedAttributeFromDatabase($event)">
+    </app-input-bar>
+  </div>
+
+  <span *ngIf="spinner" class="spinner-text">
+      {{tick < 3 ? t('product.processing') : t('product.long_processing')}}
+    </span>
+
+  <div class="attribute-container">
+      <span pTooltip="{{t('product.quality_types.tooltips.good_quality')}}">
+          <img src="assets/landing/logo-simple.png" alt="logo" class="doc-icon"/>
+        {{t('product.quality_types.good_quality')}}
+      </span>
+    <span pTooltip="{{t('product.quality_types.tooltips.sharpness')}}">
+        <img src="assets/landing/logo-simple.png" alt="logo" class="doc-icon"/>
+      {{t('product.quality_types.sharpness')}}
+      </span>
+    <span pTooltip="{{t('product.quality_types.tooltips.shape')}}">
+        <img src="assets/landing/logo-simple.png" alt="logo" class="doc-icon"/>
+      {{t('product.quality_types.shape')}}
+      </span>
+    <span pTooltip="{{t('product.quality_types.tooltips.exposure')}}">
+        <img src="assets/landing/logo-simple.png" alt="logo" class="doc-icon"/>
+      {{t('product.quality_types.exposure')}}
+      </span>
+    <span pTooltip="{{t('product.quality_types.tooltips.readability')}}">
+        <img src="assets/landing/logo-simple.png" alt="logo" class="doc-icon"/>
+      {{t('product.quality_types.readability')}}
+      </span>
+  </div>
+
+  <div class="col-10 offset-1">
+    <app-prediction-results #resultsComponent
+                            [prediction]="prediction"
+                            [file]="file"
+                            [password]="password"
+                            [fileIsUploaded]="fileState == fileStates.predicted"
+                            [fileType]="fileType">
+    </app-prediction-results>
+  </div>
+  <app-dialog #passwordDialog
+              height="300px"
+              title="{{t('product.password_dialog_title')}}"
+              button1Label="{{t('cancel')}}"
+              button1Class="outline-btn"
+              (button1Callback)="inputBarComponent.uploadComponent.deleteFile(); clearPasswordForm(); file = null;"
+              button2Label="{{t('yes')}}"
+              button2Class="purple-btn"
+              (button2Callback)="confirmPassword(passwordInputElement.value); clearPasswordForm();">
+    <div>
+      <div>
+        <br>
+        <span>{{t('product.provide_password')}}</span>
+
+        <div class="mt-4">
+          <input #passwordInputElement class="w-75 input-element font-italic mr-2"
+                 placeholder="{{t('product.provide_password')}}"
+                 type="{{isPasswordHidden ? 'password' : 'text'}}">
+          <img class="icon"
+               src="{{isPasswordHidden ? 'assets/landing/eye.svg' : 'assets/landing/eye_crossed.svg'}}"
+               (click)="isPasswordHidden = !isPasswordHidden" alt="password-eye">
+        </div>
+      </div>
+    </div>
+  </app-dialog>
+
+  <app-dialog #confirmationDialog
+              height="275px"
+              title="{{t('product.document_information')}}"
+              button1Label="No"
+              (button1Callback)="confirmationDialog.hide(); inputBarComponent.setInputFile(file); deleteFile()"
+              button2Label="Yes"
+              (button2Callback)="confirmationDialog.hide(); predictDocumentQuality(file, password)">
+    <span>
+      {{t('product.many_pages')}} {{pages ? pages : t('product.more_than_five')}} {{t('product.many_pages_break')}}
+    </span>
+  </app-dialog>
+</div>
+
+
+<ngx-loading
+  [show]="spinner"
+  [config]="{ backdropBorderRadius: '3px', fullScreenBackdrop: true }">
+</ngx-loading>
+

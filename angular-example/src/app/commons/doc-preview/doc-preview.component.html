@@ -1,0 +1,15 @@
+<p-progressSpinner *ngIf="!initialized" class="spinner"></p-progressSpinner>
+
+<div *ngIf="src" [ngClass]="{'lightbox': !fullSize, 'lightbox-viewer': fullSize}">
+  <div id="container">
+    <div class="container-content">
+      <p-button class="preview-btn predict-btn"
+                (onClick)="closeViewer()"
+                [icon]="'fas fa-times'">
+      </p-button>
+      <div class="preview" #container>
+      </div>
+    </div>
+  </div>
+</div>
+

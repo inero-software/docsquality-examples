@@ -1,0 +1,94 @@
+
+:host {
+  .spinner {
+    position: absolute;
+    left: 50%;
+    top: 35%;
+    z-index: 999;
+  }
+
+  #container {
+    display: flex;
+    flex-direction: column;
+    height: 100%;
+    overflow-y: hidden;
+
+    .container-content {
+      height: 100%;
+      display: flex;
+      flex-direction: row;
+      width: 80vw;
+    }
+
+    .preview {
+      width: 100%;
+      height: 100%;
+      display: flex;
+      justify-content: center;
+      align-items: center;
+    }
+  }
+
+  .lightbox {
+    display: flex;
+    justify-content: center;
+    height: 40vh;
+    width: 40vw;
+    overflow: auto;
+    margin-top: 3vh;
+
+    .img {
+      max-height: 90vh;
+      max-width: 90vw;
+    }
+  }
+
+  .lightbox-viewer {
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    cursor: grab;
+    position: fixed;
+    top: 0;
+    left: 0;
+    width: 100%;
+    height: 100%;
+    object-fit: cover;
+    background-color: rgba(240, 240, 240, 0.8);
+    z-index: 20;
+
+    .preview-btn {
+      position: absolute;
+      width: 2vw;
+      height: 2vw;
+      padding: 0;
+      border: 0;
+      background: 0;
+      z-index: 20;
+      cursor: pointer;
+    }
+
+    .close-btn {
+      top: 2vw;
+      right: 12vw;
+    }
+
+    .predict-btn {
+      position: absolute;
+      top: 4vw;
+      right: 12vw;
+    }
+
+  }
+}
+
+:host ::ng-deep .p-button {
+  border-radius: 6px;
+  border-color: #511C74;
+  background: #511C74;
+}
+
+.lightbox::-webkit-scrollbar {
+  display: none;
+}
+
