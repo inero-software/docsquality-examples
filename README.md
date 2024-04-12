@@ -37,8 +37,7 @@ appropriate category.
 **DocsQuality will analyze and categorize the following types of documents:**
 
 - invoice
-- CMR
-- consignment note
+- CMR consignment note
 - delivery note
 - payment confirmation
 - agreement
