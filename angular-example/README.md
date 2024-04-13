@@ -23,7 +23,8 @@ Please follow these steps to get your environment ready and launch the applicati
 
 2. Enter your credentials (available in your [DocsQuality](https://app.docsquality.com/) account)
 
-   Open the `src/environments/environment.ts` file and replace the `YOUR_CLIENT_ID`, `YOUR_CLIENT_SECRET` placeholders with your DocsQuality credentials.
+   Open the `src/environments/environment.ts` file and replace the `YOUR_CLIENT_ID`, `YOUR_CLIENT_SECRET` placeholders
+   with your DocsQuality credentials.
 
     ```typescript
     export const environment = {
@@ -31,6 +32,11 @@ Please follow these steps to get your environment ready and launch the applicati
     clientSecret: 'YOUR_CLIENT_SECRET',
     };
     ```
+   
+**Note: do not upload confidential documents.**
+
+For a **fully private** (standalone) version,
+check out [DocsQuality offline integration](https://docs.app.docsquality.com/usage.html#offline-integration).
 
 ## Running the application
 
@@ -42,6 +48,7 @@ Please follow these steps to get your environment ready and launch the applicati
 
 2. Access the application
 
-Open your web browser and go to http://localhost:4200/. The app will automatically reload if you change any of the source files.
+Open your web browser and go to http://localhost:4200/. The app will automatically reload if you change any of the
+source files.
 
 
