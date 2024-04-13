@@ -30,23 +30,27 @@ export class QualityService {
     return this.httpClient.post<Token>(this.tokenEndpoint, payload, {headers});
   }
 
-  public getPredictionResults(file: File, accessToken: Token, ocrIndex: boolean = false, documentCategory: boolean = false, password?: string): Observable<Engine> {
+  public getPredictionResults(file: File, accessToken: Token, ocrIndex: boolean = false, docCategory: boolean = false, password?: string): Observable<Engine> {
     /**
      * Send the token with a file in order to get quality prediction results
      * If the file is password protected a password has to be inputted as well
      */
     const formData: FormData = new FormData();
     formData.append('file', file);
-
-    const params: HttpParams = new HttpParams()
-      .set("preview", true)
-      .set("ocrIndex", ocrIndex)
-      .set("docCategory", documentCategory);
-
     if (password) {
       formData.append('password', password);
     }
-    const headers = {'Authorization': `Bearer ${accessToken.access_token}`, 'Accept-Language': 'en-US'}
+
+    const params: HttpParams = new HttpParams()
+      .set("preview", true)
+      .set("ocr_index", ocrIndex)
+      .set("doc_category", docCategory)
+      .set("page_category", docCategory);
+
+    const headers: HttpHeaders = new HttpHeaders({
+      'Authorization': `Bearer ${accessToken.access_token}`,
+      'Accept-Language': 'en-US'
+    });
     return this.httpClient.post<Engine>(this.predictionEndpoint, formData, {headers: headers, params: params});
   }
 }
