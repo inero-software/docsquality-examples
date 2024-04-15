@@ -30,7 +30,7 @@ export class QualityService {
     return this.httpClient.post<Token>(this.tokenEndpoint, payload, {headers});
   }
 
-  public getPredictionResults(file: File, accessToken: Token, ocrIndex: boolean = false, docCategory: boolean = false, password?: string): Observable<Engine> {
+  public getPredictionResults(file: File, accessToken: Token, preview: boolean, ocrIndex: boolean = false, docCategory: boolean = false, password?: string): Observable<Engine> {
     /**
      * Send the token with a file in order to get quality prediction results
      * If the file is password protected a password has to be inputted as well
@@ -42,7 +42,7 @@ export class QualityService {
     }
 
     const params: HttpParams = new HttpParams()
-      .set("preview", true)
+      .set("preview", preview)
       .set("ocr_index", ocrIndex)
       .set("doc_category", docCategory)
       .set("page_category", docCategory);

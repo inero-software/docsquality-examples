@@ -94,11 +94,12 @@ export class PredictionComponent {
 
   predictDocumentQuality(file: File, password?: string): void {
     this.enableLoading();
+    const preview: boolean = this.fileType !== DocumentFileType.PDF;
     const ocrIndex: boolean = localStorage.getItem(this.ocrIndexKey) === 'true';
     const docCategory: boolean = localStorage.getItem(this.docCategoryKey) === 'true';
     this.qualityService.getAccessToken().pipe(
       tap((res: Token): void => {
-        this.qualityService.getPredictionResults(file, res, ocrIndex, docCategory, password).pipe(
+        this.qualityService.getPredictionResults(file, res, preview, ocrIndex, docCategory, password).pipe(
           tap((response: Engine): void => {
             this.prediction = response;
             this.pages = this.prediction.qualities.length;
